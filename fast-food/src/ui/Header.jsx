@@ -1,4 +1,4 @@
-import Search from "./Search"
+import Search from "./Search";
 
 function Header() {
   return (
@@ -6,7 +6,7 @@ function Header() {
       <h1>Dominos</h1>
       <Search />
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;
