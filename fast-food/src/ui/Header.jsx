@@ -1,6 +1,11 @@
+import Search from "./Search"
+
 function Header() {
   return (
-    <div>Header</div>
+    <div>
+      <h1>Dominos</h1>
+      <Search />
+    </div>
   )
 }
 

@@ -9,6 +9,7 @@ function Home() {
         Straight out of the oven, straight to you.
       </h1>
       <Link to='/menu'>Menu</Link>
+      <Link to='/order/new'>New Order</Link>
     </div>
   );
 }
