@@ -4,7 +4,7 @@ function MenuItem({ pizza }) {
   const { name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
 
   return (
-    <li className="flex gap-4 p-2 text-start text-stone-600">
+    <li className="flex gap-4 divide-y divide-stone-200 p-2 text-start text-stone-600">
       <img src={imageUrl} alt={name} className="w-24" />
       <div className="flex grow flex-col">
         <p className="font-semibold">{name}</p>

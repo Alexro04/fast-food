@@ -19,7 +19,7 @@ function Search() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="🔍Search orders #..."
-        className="rounded-md bg-yellow-100 px-4 py-2 ring-yellow-100 transition-all duration-300 placeholder:text-stone-400 focus:outline-none sm:w-56 sm:focus:w-72 sm:focus:ring"
+        className="w-56 rounded-md bg-yellow-100 px-4 py-2 ring-yellow-100 transition-all duration-300 placeholder:text-stone-400 focus:outline-none sm:focus:w-72 sm:focus:ring"
       />
     </form>
   );

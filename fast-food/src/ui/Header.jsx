@@ -1,11 +1,20 @@
+import { Link } from "react-router-dom";
 import Search from "./Search";
 
 function Header() {
   return (
-    <div>
-      <h1>Dominos</h1>
+    <header className="flex items-center justify-between bg-yellow-400 px-3 py-4 sm:px-6">
+      <Link
+        to="/"
+        className="text-md whitespace-nowrap font-semibold uppercase tracking-wider sm:tracking-widest"
+      >
+        Robonious Pizza
+      </Link>
       <Search />
-    </div>
+      <p className="hidden text-base font-semibold uppercase sm:block">
+        Jonathan Joestar
+      </p>
+    </header>
   );
 }
 

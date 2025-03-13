@@ -11,7 +11,7 @@ export default function AppLayout() {
     <div className="grid h-screen grid-rows-[auto_1fr_auto]">
       {isLoading && <Loading />}
       <Header />
-      <main className="overflow-y-scroll text-center">
+      <main className="text-center">
         <Outlet />
       </main>
       <Footer />
