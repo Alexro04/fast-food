@@ -1,0 +1,17 @@
+import { Link } from "react-router-dom";
+
+function EmptyCart() {
+  return (
+    <div className="px-4 py-3">
+      <Link to="/menu" className="font-semibold text-blue-500">
+        &larr; Back to menu
+      </Link>
+
+      <p className="mt-5 text-lg font-semibold text-stone-800">
+        Your cart is empty. Start adding some pizzas :)
+      </p>
+    </div>
+  );
+}
+
+export default EmptyCart;
