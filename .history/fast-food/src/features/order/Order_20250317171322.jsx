@@ -23,7 +23,7 @@ function Order() {
     orderPrice,
     estimatedDelivery,
   } = order;
-
+  console.log(order);
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
