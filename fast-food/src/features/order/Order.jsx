@@ -1,18 +1,28 @@
 // Test ID: IIDSAT
 
-import { useLoaderData } from "react-router-dom";
-import { getOrder } from "../../utils/apiRestaurant";
+import { useFetcher, useLoaderData } from "react-router-dom";
+import { getOrder, updateOrder } from "../../utils/apiRestaurant";
 import {
   calcMinutesLeft,
   formatCurrency,
   formatDate,
 } from "../../utils/helpers";
 
+import Button from "../../ui/Button";
 import OrderItem from "./OrderItem";
+import { useEffect } from "react";
 
 function Order() {
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const order = useLoaderData();
+  const fetcher = useFetcher();
+
+  useEffect(
+    function () {
+      if (!fetcher.data && fetcher.state === "idle") fetcher.load("/menu");
+    },
+    [fetcher],
+  );
 
   const {
     id,
@@ -57,17 +67,33 @@ function Order() {
       </div>
       <ul className="my-3 divide-y divide-stone-200">
         {cart.map((item) => (
-          <OrderItem item={item} key={item.pizzaId} />
+          <OrderItem
+            item={item}
+            key={item.pizzaId}
+            isIngredientsLoading={fetcher.state === "loading"}
+            ingredients={
+              fetcher.data?.find((pizza) => pizza.id === item.pizzaId)
+                .ingredients
+            }
+          />
         ))}
       </ul>
 
-      <div className="bg-stone-200 px-4 py-4">
+      <div className="space-y-1 bg-stone-200 px-4 py-4">
         <p>Price pizza: {formatCurrency(orderPrice)}</p>
         {priority && <p>Price priority: {formatCurrency(priorityPrice)}</p>}
         <p className="font-semibold">
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+
+      {!priority && (
+        <fetcher.Form method="PATCH" className="mt-3 text-right">
+          <Button type="primary">
+            {fetcher.state === "submitting" ? "Changing..." : "Make Priority"}
+          </Button>
+        </fetcher.Form>
+      )}
     </div>
   );
 }
@@ -82,6 +108,15 @@ export async function loader({ params }) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function action({ params }) {
+  const id = params.orderId;
+
+  const updateObj = { priority: true };
+  await updateOrder(id, updateObj);
+
+  return null;
 }
 
 // FWWLMOs
